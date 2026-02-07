@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2TirsLD Support & Privacy</title>
+  <style>
+body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; margin:0; padding:0; color:#1f2937; background:#f8fafc; }
+main { max-width: 860px; margin: 32px auto; background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; }
+h1 { margin-top: 0; font-size: 1.8rem; }
+h2 { margin-top: 1.7rem; font-size: 1.15rem; }
+.muted { color:#6b7280; font-size: 0.95rem; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 18px; }
+.chip { border:1px solid #d1d5db; border-radius: 999px; padding: 6px 10px; text-decoration:none; color:#111827; font-size:0.9rem; }
+.chip:hover { background:#f3f4f6; }
+.actions { margin: 12px 0 18px; display:flex; gap:12px; flex-wrap:wrap; }
+.btn { background:#111827; color:white; border-radius:8px; padding:8px 12px; text-decoration:none; }
+.btn.secondary { background:#374151; }
+code { background:#f3f4f6; padding:2px 5px; border-radius:5px; }
+footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e7eb; color:#6b7280; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>2TirsLD Support & Privacy</h1>
+    <p>Official pages for App Store listing and review.</p>
+    <div class="actions">
+      <a class="btn" href="/2TirsLD_Support_privacy/support.html">Support URL</a>
+      <a class="btn secondary" href="/2TirsLD_Support_privacy/privacy.html">Privacy URL</a>
+    </div>
+    <h2>Language selector</h2>
+    <p>Choose a locale, then open dedicated Support/Privacy pages for that locale.</p>
+    <label for="locale"><strong>Locale</strong></label><br>
+    <select id="locale"><option value="ar">العربية (ar)</option>
+<option value="ca">Català (ca)</option>
+<option value="cs">Čeština (cs)</option>
+<option value="da">Dansk (da)</option>
+<option value="de">Deutsch (de)</option>
+<option value="el">Ελληνικά (el)</option>
+<option value="en">English (US) (en)</option>
+<option value="en-GB">English (UK) (en-GB)</option>
+<option value="es">Español (España) (es)</option>
+<option value="es-419">Español (Latinoamérica) (es-419)</option>
+<option value="fi">Suomi (fi)</option>
+<option value="fr">Français (fr)</option>
+<option value="fr-CA">Français (Canada) (fr-CA)</option>
+<option value="he">עברית (he)</option>
+<option value="hi">हिन्दी (hi)</option>
+<option value="hr">Hrvatski (hr)</option>
+<option value="hu">Magyar (hu)</option>
+<option value="id">Bahasa Indonesia (id)</option>
+<option value="it">Italiano (it)</option>
+<option value="ja">日本語 (ja)</option>
+<option value="ko">한국어 (ko)</option>
+<option value="ms">Bahasa Melayu (ms)</option>
+<option value="nb">Norsk Bokmål (nb)</option>
+<option value="nl">Nederlands (nl)</option>
+<option value="pl">Polski (pl)</option>
+<option value="pt-BR">Português (Brasil) (pt-BR)</option>
+<option value="pt-PT">Português (Portugal) (pt-PT)</option>
+<option value="ro">Română (ro)</option>
+<option value="ru">Русский (ru)</option>
+<option value="sk">Slovenčina (sk)</option>
+<option value="sv">Svenska (sv)</option>
+<option value="th">ไทย (th)</option>
+<option value="tr">Türkçe (tr)</option>
+<option value="uk">Українська (uk)</option>
+<option value="vi">Tiếng Việt (vi)</option>
+<option value="zh-Hans">中文（简体） (zh-Hans)</option>
+<option value="zh-Hant">中文（繁體） (zh-Hant)</option></select>
+    <div class="actions">
+      <a id="openSupport" class="btn">Open Support (locale)</a>
+      <a id="openPrivacy" class="btn secondary">Open Privacy (locale)</a>
+    </div>
+    <footer>
+      <p>Base URLs for App Store:</p>
+      <p><code>https://idfixe.github.io/2TirsLD_Support_privacy/support.html</code></p>
+      <p><code>https://idfixe.github.io/2TirsLD_Support_privacy/privacy.html</code></p>
+    </footer>
+  </main>
+  <script>
+    const known = new Set(["ar", "ca", "cs", "da", "de", "el", "en", "en-GB", "es", "es-419", "fi", "fr", "fr-CA", "he", "hi", "hr", "hu", "id", "it", "ja", "ko", "ms", "nb", "nl", "pl", "pt-BR", "pt-PT", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh-Hans", "zh-Hant"]);
+    const localeSelect = document.getElementById("locale");
+    const openSupport = document.getElementById("openSupport");
+    const openPrivacy = document.getElementById("openPrivacy");
+    function normalizeLocale(v) {
+      if (known.has(v)) return v;
+      if (v.includes("-")) {
+        const base = v.split("-")[0];
+        if (known.has(base)) return base;
+      }
+      return "en";
+    }
+    const auto = normalizeLocale(navigator.language || "en");
+    localeSelect.value = auto;
+    function refresh() {
+      const v = normalizeLocale(localeSelect.value);
+      openSupport.href = `/2TirsLD_Support_privacy/l10n/${v}/support.html`;
+      openPrivacy.href = `/2TirsLD_Support_privacy/l10n/${v}/privacy.html`;
+    }
+    localeSelect.addEventListener("change", refresh);
+    refresh();
+  </script>
+</body>
+</html>
